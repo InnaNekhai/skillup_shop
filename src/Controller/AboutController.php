@@ -23,7 +23,7 @@ class AboutController extends Controller
 
     public function about(){
         $about = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consectetur consequuntur deserunt dolorem dolorum, eius est iste iure iusto maiores modi neque nesciunt perspiciatis quae recusandae rerum sed totam voluptas.';
-        return $this->render('/about.html.twig', array(
+        return $this->render('about/about.html.twig', array(
             'about' => $about,
         ));
     }
