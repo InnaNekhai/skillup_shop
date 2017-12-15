@@ -1,2 +1,10 @@
 <h1 style=color:darkblue>Информация о магазине </h1>
 <p>{{ about }}</p>
+
+<p><a href="{{ notebookUrl }}" >Ноутбуки</a></p>
+<a href="{{ path('category_show', {'slug':'tv', 'page':'5'}) }}" >Телевизоры</a> <br>
+<a href="{{ path('category_show', {'slug':'media'}) }}" >Медиацентры</a> <br>
+
+Вы просматривали категорию: {{ lastCategory }} <br>
+
+Вы смотрели <a href="{{ path('category_show', {'slug':  lastCategory  }) }}" >{{ lastCategory }}</a>

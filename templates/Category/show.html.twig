@@ -1,0 +1,10 @@
+{%  for mes in app.flashes('notice')  %}
+<p>{{ mes }}</p>
+{% endfor %}
+
+Category: {{ slug }} <br>
+Page: {{ page }}
+
+<a href="{{ path('category_message') }}">Добавить в корзину</a>
+
+Параметp{{ param }}

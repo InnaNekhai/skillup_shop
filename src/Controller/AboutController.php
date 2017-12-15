@@ -10,21 +10,41 @@ namespace App\Controller;
 
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionBagInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class AboutController extends Controller
 {
     /**
-     * @Route("/about")
+     * @Route("/about" , name="about_show" )
      *
      * @return Response
      */
 
-    public function about(){
+    public function show(SessionInterface $session)
+    {
+        $url = $this->generateUrl('category_show',
+            ['slug'=> 'notebooks',
+                'param'=>'getparam'], UrlGeneratorInterface::ABSOLUTE_URL
+    );
+
+
         $about = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consectetur consequuntur deserunt dolorem dolorum, eius est iste iure iusto maiores modi neque nesciunt perspiciatis quae recusandae rerum sed totam voluptas.';
-        return $this->render('about/about.html.twig', array(
-            'about' => $about,
-        ));
+        return $this->render('about/about.html.twig',
+            ['about' => $about,
+                'notebookUrl' => $url,
+                'lastCategory' => $session->get('lastVisitedCategory')
+                ]);
+    }
+
+    /**
+     * @Route("/to-about")
+     */
+    public function redirectToShow()
+    {
+        return $this->redirectToRoute('about_show');
     }
 }
