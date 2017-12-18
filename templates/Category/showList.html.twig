@@ -1,4 +1,5 @@
 Список категорий: <br>
 {% for category in categories %}
-    {{ category.name }}<br>
+   <a href="{{ path("category_show", {'id':category.id}) }}" >{{ category.name }}</a>
+    <br>
 {% endfor %}

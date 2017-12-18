@@ -22,12 +22,14 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class CategoryController extends Controller
 {
     /**
-     * @Route("/category/{id}", name="category_show")
+     * @Route("/category/{id}/{page}", name="category_show")
+     * @param Category $category
+     * @return Response
      */
-    public function show(Category $category)
+    public function show(Category $category, $page=1)
     {
 
-        return $this->render('Category/show.html.twig', ['category' => $category]);
+        return $this->render('Category/show.html.twig', ['category' => $category, 'page'=>$page]);
     }
 
     /**
