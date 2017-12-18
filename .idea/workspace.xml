@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0008e839-ea39-4dd7-82bd-c85b8f8a3681" name="Default" comment="Lesson_19">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/skillup_shop.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+    <list default="true" id="0008e839-ea39-4dd7-82bd-c85b8f8a3681" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -364,7 +361,7 @@
       <workItem from="1513358193391" duration="3092000" />
       <workItem from="1513517444082" duration="9828000" />
       <workItem from="1513580649076" duration="2831000" />
-      <workItem from="1513609644936" duration="276000" />
+      <workItem from="1513609644936" duration="341000" />
     </task>
     <task id="LOCAL-00001" summary="Lesson_18_training">
       <created>1513316576312</created>
@@ -401,11 +398,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513575017453</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Lesson_20">
+      <created>1513609959640</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1513609959640</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72310000" />
+    <option name="totallyTimeSpent" value="72375000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="683" y="0" width="683" height="728" extended-state="0" />
@@ -461,7 +465,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Lesson_18_training" />
     <MESSAGE value="Lesson_19" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lesson_19" />
+    <MESSAGE value="Lesson_20" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lesson_20" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
