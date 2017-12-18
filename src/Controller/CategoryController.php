@@ -9,6 +9,9 @@
 namespace App\Controller;
 
 
+use App\Entity\Category;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,10 +22,36 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class CategoryController extends Controller
 {
     /**
+     * @Route("/category/{id}", name="category_show")
+     */
+    public function show(Category $category)
+    {
+
+        return $this->render('Category/show.html.twig', ['category' => $category]);
+    }
+
+    /**
+     * @return Response
+     * @Route("/categories", name="list_of_categories")
+     */
+    public function listOfCategories()
+    {
+        $repo = $this->getDoctrine()->getRepository(Category::class);
+        $categories = $repo->findAll();
+
+        if (!$categories){
+            throw $this->createNotFoundException('Категории не найдены');
+        }
+
+        return $this->render('Category/showList.html.twig', ['categories'=>$categories]);
+    }
+
+
+    /**
      * @param $slug
      * @Route("/category/{slug}/{page}", name="category_show", requirements={"page"="\d+"})
      */
-    public function show($slug, $page=1, SessionInterface $session, Request $request)
+    /*public function show($slug, $page=1, SessionInterface $session, Request $request)
     {
         $session->set('lastVisitedCategory', $slug);
         $param = $request->query->get('param');
@@ -30,7 +59,7 @@ class CategoryController extends Controller
         return $this->render('Category\show.html.twig',
         ['slug'=>$slug, 'page'=>$page, 'param'=> $param,]
         );
-    }
+    }*/
 
     /**
      * @Route("message", name="category_message")
@@ -51,5 +80,21 @@ class CategoryController extends Controller
         $response->setContent('Test content');
 
         return $response;
+    }
+
+    /**
+     * @param EntityManagerInterface $em
+     * @return Response
+     * @Route("/createCategory")
+     */
+    public function createCategory(EntityManagerInterface $em)
+    {
+        $category = new Category();
+        $category->setName('Climate');
+
+        $em->persist($category);
+        $em->flush();
+
+        return new Response('Категория добавлена');
     }
 }
