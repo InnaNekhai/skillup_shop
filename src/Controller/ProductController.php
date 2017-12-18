@@ -68,7 +68,12 @@ class ProductController extends Controller
     public function showAllByName($name = '')
     {
         $repo = $this->getDoctrine()->getRepository(Product::class);
-        $products = $repo->findBy(['name' => $name], ['price'=> 'ASC']);
+
+        if ($name){
+            $products = $repo->findBy(['name' => $name], ['price'=> 'ASC']);
+        } else {
+            $products = $repo->findAll();
+        }
 
         if( !$products){
             throw $this->createNotFoundException('Products not found');
