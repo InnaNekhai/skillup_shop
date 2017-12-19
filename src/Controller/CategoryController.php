@@ -12,6 +12,7 @@ namespace App\Controller;
 use App\Entity\Category;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Entity;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +23,9 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class CategoryController extends Controller
 {
     /**
-     * @Route("/category/{id}/{page}", name="category_show")
+     * @Route("/category/{slug}/{page}", name="category_show")
+     *
+     * @ParamConverter("slug",)
      * @param Category $category
      * @return Response
      */
@@ -36,7 +39,7 @@ class CategoryController extends Controller
      * @return Response
      * @Route("/categories", name="list_of_categories")
      */
-    public function listOfCategories()
+    public function listCategories()
     {
         $repo = $this->getDoctrine()->getRepository(Category::class);
         $categories = $repo->findAll();
@@ -45,23 +48,9 @@ class CategoryController extends Controller
             throw $this->createNotFoundException('Категории не найдены');
         }
 
-        return $this->render('Category/showList.html.twig', ['categories'=>$categories]);
+        return $this->render('list.html.twig', ['categories'=>$categories]);
     }
 
-
-    /**
-     * @param $slug
-     * @Route("/category/{slug}/{page}", name="category_show", requirements={"page"="\d+"})
-     */
-    /*public function show($slug, $page=1, SessionInterface $session, Request $request)
-    {
-        $session->set('lastVisitedCategory', $slug);
-        $param = $request->query->get('param');
-
-        return $this->render('Category\show.html.twig',
-        ['slug'=>$slug, 'page'=>$page, 'param'=> $param,]
-        );
-    }*/
 
     /**
      * @Route("message", name="category_message")
