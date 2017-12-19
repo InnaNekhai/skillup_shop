@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class CategoryController extends Controller
 {
     /**
-     * @Route("/category/{id}/{page}", name="category_show")
+     * @Route("/category/{id}/{page}", name="category_show", requirements={"page": "\d:"})
      * @param Category $category
      * @return Response
      */
