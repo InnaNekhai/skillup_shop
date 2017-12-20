@@ -23,6 +23,13 @@ class Category
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=250, unique=true)
+     */
+    private $slug;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -45,6 +52,24 @@ class Category
     public function setName(string $name): Category
     {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     * @return Category
+     */
+    public function setSlug(string $slug): Category
+    {
+        $this->slug = $slug;
         return $this;
     }
 
