@@ -17,22 +17,28 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CategoryController extends Controller
 {
     /**
-     * @Route("/category/{slug}/{page}", name="category_show")
+     * @Route("/category/{slug}/{page}",
+     *     name="category_show",
+     *     requirements={"page": "\d+"})
      *
-     * @ParamConverter("slug",)
+     * @ParamConverter("slug", options={"mapping": {"slug": "slug"}})
+     *
      * @param Category $category
+     * @param $page
+     * @param $session
+     *
      * @return Response
      */
-    public function show(Category $category, $page=1)
+    public function show(Category $category, $page = 1, SessionInterface $session)
     {
+        $session->set('lastVisitedCategory', $category->getId());
 
-        return $this->render('Category/show.html.twig', ['category' => $category, 'page'=>$page]);
+        return $this->render('Category/show.html.twig', ['category' => $category, 'page' => $page]);
     }
 
     /**
@@ -48,7 +54,7 @@ class CategoryController extends Controller
             throw $this->createNotFoundException('Категории не найдены');
         }
 
-        return $this->render('list.html.twig', ['categories'=>$categories]);
+        return $this->render('Category/list.html.twig', ['categories' => $categories]);
     }
 
 

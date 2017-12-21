@@ -35,6 +35,14 @@ class Product
     private $description;
 
     /**
+     * @var Category
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", )
+     * @ORM\JoinColumn(name="category_id", onDelete="CASCADE")
+     */
+    private $category;
+
+    /**
      * @return mixed
      */
     public function getId()
