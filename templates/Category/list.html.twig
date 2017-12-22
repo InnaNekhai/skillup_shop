@@ -1,5 +1,14 @@
-Список категорий: <br>
-{% for category in categories %}
-   <a href="{{ path("category_show", {'slug': category.slug}) }}" >{{ category.name }}</a>
-    <br>
-{% endfor %}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Категории - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {% for category in categories %}
+       <p>
+           <a href="{{ path("category_show", {'slug': category.slug}) }}" >{{ category.name }}</a>
+       </p>
+        <hr>
+    {% endfor %}
+{% endblock %}

@@ -1,3 +1,19 @@
-Выбранная категория: {{ category.name }} <br>
-Страница: {{ page }}
+{% for message in app.flashes('notice') %}
+    <p>{{ message }}</p>
+{% endfor %}
 
+Выбранная категория: {{ category.name }} <br>
+Страница: {{ page }}<br><br>
+
+Продукты: <br><br>
+{% for product in category.products %}
+    <a href="{{ path("product_show", {'id': product.id}) }}" >
+        {{ product.name }} - {{ product.price|number_format(2, ',', ' ') }}
+    </a>
+    <br><br>
+<button>
+    <a href="{{ path("category_message") }}" style = "color:green; font-weight:bold" > Купить  </a>
+</button>
+
+    <hr>
+{% endfor %}
