@@ -36,7 +36,7 @@ class AboutController extends Controller
         return $this->render('about/about.html.twig',
             ['about' => $about,
                 'notebookUrl' => $url,
-                'lastCategory' => $session->get('lastVisitedCategory')
+                'lastCategory' => $session->get('lastCategory')
                 ]);
     }
 

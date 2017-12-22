@@ -1,10 +1,17 @@
-<h1 style=color:darkblue>Информация о магазине </h1>
-<p>{{ about }}</p>
+{% extends 'base.html.twig' %}
 
-<p><a href="{{ notebookUrl }}" >Ноутбуки</a></p>
-<a href="{{ path('category_show', {'slug':'tv', 'page':'5'}) }}" >Телевизоры</a> <br>
-<a href="{{ path('category_show', {'slug':'media'}) }}" >Медиацентры</a> <br>
+{% block title %}
+    О нас - {{ parent() }}
+{% endblock %}
 
-Вы просматривали категорию: {{ lastCategory }} <br>
+{% block body %}
+    <h1 style = "color:darkblue" > Информация о магазине </h1>
+    <p>{{ about }}</p>
 
-Вы смотрели <a href="{{ path('category_show', {'slug':  lastCategory  }) }}" >{{ lastCategory }}</a>
+    <a href="{{ notebookUrl }}" >Ноутбуки</a><br>
+    <a href="{{ path('category_show', {'slug':'tvs', 'page':'5'}) }}" >Телевизоры</a> <br>
+    <a href="{{ path('category_show', {'slug':'media'}) }}" >Медиацентры</a> <br><br>
+
+
+    Вы смотрели:  <a href="{{ path('category_show', {'slug':  lastCategory  }) }}" >{{ lastCategory }}</a>
+{% endblock %}

@@ -1,19 +1,27 @@
-{% for message in app.flashes('notice') %}
-    <p>{{ message }}</p>
-{% endfor %}
+{% extends 'base.html.twig' %}
 
-Выбранная категория: {{ category.name }} <br>
-Страница: {{ page }}<br><br>
+{% block title  %}
+    {{ category.name }} - {{ parent() }}
+{% endblock %}
 
-Продукты: <br><br>
-{% for product in category.products %}
-    <a href="{{ path("product_show", {'id': product.id}) }}" >
-        {{ product.name }} - {{ product.price|number_format(2, ',', ' ') }}
-    </a>
-    <br><br>
-<button>
-    <a href="{{ path("category_message") }}" style = "color:green; font-weight:bold" > Купить  </a>
-</button>
+{% block body %}
+    {% for message in app.flashes('notice') %}
+        <p>{{ message }}</p>
+    {% endfor %}
 
-    <hr>
-{% endfor %}
+    Выбранная категория: {{ category.name }} <br>
+    Страница: {{ page }}<br><br>
+
+    Продукты: <br><br>
+    {% for product in category.products %}
+        <a href="{{ path("product_show", {'id': product.id}) }}" >
+            {{ product.name }} - {{ product.price|number_format(2, ',', ' ') }}
+        </a>
+        <br><br>
+    <button>
+        <a href="{{ path("category_message") }}" style = "color:green; font-weight:bold" > Купить  </a>
+    </button>
+
+        <hr>
+    {% endfor %}
+{% endblock %}

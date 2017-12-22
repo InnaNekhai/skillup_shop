@@ -1,7 +1,15 @@
-{% for product in products %}
-    {{ product.name }} <br>
-    Цена: {{ product.price }} <br>
+{% extends 'base.html.twig' %}
 
-    {{ product.description }}
-    <hr><br>
-{% endfor %}
+{% block title %}
+    Товары - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {% for product in products %}
+        {{ product.name }} <br>
+        Цена: {{ product.price }} <br>
+
+        {{ product.description }}
+        <hr><br>
+    {% endfor %}
+{% endblock %}
