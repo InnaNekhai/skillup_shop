@@ -61,10 +61,13 @@ class CategoryController extends Controller
 
     /**
      * @Route("message", name="category_message")
+     *
+     *
      */
     public function message(SessionInterface $session)
     {
         $this->addFlash('notice', 'Товар добавлен в корзину');
+
 
         return $this->redirectToRoute('category_show', ['slug'=>$session->get('lastCategory')]);
     }
