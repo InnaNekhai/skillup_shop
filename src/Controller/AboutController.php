@@ -20,16 +20,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class AboutController extends Controller
 {
 
-    /**
-     * @Route("/", name="homepage")
-     */
-    public function homepage()
-    {
-        $repo = $this->getDoctrine()->getRepository(Product::class);
-        $products = $repo->findBy(['isTop'=>true]);
-
-        return $this->render('about/homepage.html.twig', ['products'=>$products]);
-    }
 
     /**
      * @Route("/about" , name="about_show" )
