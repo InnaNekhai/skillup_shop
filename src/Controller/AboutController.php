@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Product;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -18,6 +19,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class AboutController extends Controller
 {
+
+
     /**
      * @Route("/about" , name="about_show" )
      *

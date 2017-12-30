@@ -43,6 +43,12 @@ class Product
     private $category;
 
     /**
+     * @var boolean
+     * @ORM\Column(type="boolean")
+     */
+    private $isTop = false;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -129,6 +135,24 @@ class Product
     public function setCategory(Category $category): Product
     {
         $this->category = $category;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getisTop(): string
+    {
+        return $this->isTop;
+    }
+
+    /**
+     * @param string $isTop
+     * @return Product
+     */
+    public function setIsTop(string $isTop): Product
+    {
+        $this->isTop = $isTop;
         return $this;
     }
 
