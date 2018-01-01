@@ -10,19 +10,31 @@ namespace App\Controller;
 
 
 use App\Entity\Product;
+use App\Service\Catalogue;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends Controller
 {
     /**
+     * @var Catalogue
+     */
+    private $catalogue;
+
+    public function __construct(Catalogue $catalogue)
+    {
+        $this->catalogue=$catalogue;
+    }
+
+
+    /**
      * @Route("/", name="homepage")
      */
-    public function homepage()
+    public function showTopProducts()
     {
-        $repo = $this->getDoctrine()->getRepository(Product::class);
-        $products = $repo->findBy(['isTop'=>true]);
-
+        $products = $this->catalogue->topProducts();
         return $this->render('Default/homepage.html.twig', ['products'=>$products]);
     }
+
+
 }
