@@ -38,7 +38,6 @@ class Catalogue
 
     }
 
-
     /**
      * @return Product[]|array
      */

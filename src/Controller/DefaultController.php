@@ -33,6 +33,7 @@ class DefaultController extends Controller
     public function showTopProducts()
     {
         $products = $this->catalogue->topProducts();
+
         return $this->render('Default/homepage.html.twig', ['products'=>$products]);
     }
 
