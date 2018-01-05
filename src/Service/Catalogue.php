@@ -50,5 +50,18 @@ class Catalogue
     }
 
 
+    /**
+     * @return Product[]|array
+     */
+    public function getTopCategories()
+    {
+        $repo = $this->em->getRepository(Category::class);
+
+        return $repo->findby(['parent'=>null], ['name'=>'ASC']);
+    }
+
+
+
+
 
 }
