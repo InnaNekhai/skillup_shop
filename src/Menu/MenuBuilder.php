@@ -37,6 +37,7 @@ class MenuBuilder
 
         $menu->addChild('Главная', array('route' => 'homepage'));
         $catalogueMenu = $menu->addChild('Каталог', array('route' => 'list_of_categories'));
+        $catalogueMenu->setExtra('dropdown', true);
 
         foreach ($this->catalogueService->getTopCategories() as $category){
             $catalogueMenu->addChild($category->getName(), [
