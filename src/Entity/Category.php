@@ -63,7 +63,7 @@ class Category
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName(): ? string
     {
         return $this->name;
     }
@@ -119,6 +119,68 @@ class Category
         $this->products->removeElement($product);
 
         return $this;
+    }
+
+    /**
+     * @return Category
+     */
+    public function getParent(): ? Category
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param Category $parent
+     * @return Category
+     */
+    public function setParent(Category $parent): Category
+    {
+        $this->parent = $parent;
+        return $this;
+    }
+
+    /**
+     * @return Category[]|ArrayCollection
+     */
+    public function getSubcategories()
+    {
+        return $this->subcategories;
+    }
+
+    /**
+     * @param Category[]|ArrayCollection $subcategories
+     * @return Category
+     */
+    public function setSubcategories($subcategories)
+    {
+        $this->subcategories = $subcategories;
+        return $this;
+    }
+
+
+
+    public function getFullName()
+    {
+        $ret = [];
+
+
+        if ($this->parent){
+            $parent = $this->parent;
+
+            while ($parent){
+                $ret[] = $parent->name;
+                $parent = $parent->parent;
+            }
+        }
+
+        $ret[] = $this ->name;
+
+        return implode(" / ", $ret);
+    }
+
+    public function __toString()
+    {
+        return $this->getFullName() ? $this->getFullName() : "";
     }
 
 }
