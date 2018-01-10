@@ -10,6 +10,8 @@ namespace App\Controller;
 
 
 use App\Entity\Product;
+use App\Form\FeedbackType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -49,5 +51,20 @@ class AboutController extends Controller
     public function redirectToShow()
     {
         return $this->redirectToRoute('about_show');
+    }
+
+    /**
+     * @Route("/feedback", name="feedback")
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function feedback(Request $request)
+    {
+        $form=$this->createForm(FeedbackType::class);
+
+        return $this->render('about/feedback.html.twig', [
+            'form'=>$form->createView(),
+        ]);
     }
 }
