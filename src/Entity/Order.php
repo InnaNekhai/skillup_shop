@@ -304,5 +304,37 @@ class Order
         return $this;
     }
 
+    /**
+     * @return Order[]|ArrayCollection
+     */
+    public function getItems(): ArrayCollection
+    {
+        return $this->items;
+    }
+
+    /**
+     * @param OrderItem $item
+     *
+     * @return $this
+     */
+    public function addItem(OrderItem $item)
+    {
+        $this->items->add($item);
+        $item->setOrder($this);
+
+        return $this;
+    }
+
+    /**
+     * @param OrderItem $item
+     *
+     * @return $this
+     */
+    public function removeItem(OrderItem $item)
+    {
+        $this->items->removeElement($item);
+
+        return $this;
+    }
 
 }
