@@ -65,7 +65,7 @@ class Order
      *
      * @ORM\Column(type="string", length=250)
      */
-    private $prone;
+    private $phone;
 
     /**
      * @var string
@@ -217,18 +217,18 @@ class Order
     /**
      * @return string
      */
-    public function getProne(): string
+    public function getphone(): string
     {
-        return $this->prone;
+        return $this->phone;
     }
 
     /**
-     * @param string $prone
+     * @param string $phone
      * @return Order
      */
-    public function setProne(string $prone): Order
+    public function setphone(string $phone): Order
     {
-        $this->prone = $prone;
+        $this->phone = $phone;
         return $this;
     }
 
