@@ -10,21 +10,30 @@ namespace App\Controller;
 
 
 use App\Entity\Order;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\OrderItem;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\DateTime;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class OrderController extends Controller
 {
-
     /**
-     * @Route("cart/{id}", name="cart", requirements={ "id" = "\d+" })
+     * @Route("cart/{order_id}", name="cart", requirements={"order_id": "\d+"})
+     *
+     * @param $order_id
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showCart(Order $order)
+    public function showCart($order_id)
     {
-        return $this->render('order/cart.html.twig', ['order'=>$order]);
+        $repo = $this->getDoctrine()->getRepository(OrderItem::class);
+        $orderItems = $repo->findBy(['order'=>$order_id]);
+
+        $sumItem=0;
+
+        foreach ($orderItems as $key=>$value){
+            $sumItem += ($orderItems['count']*$orderItems['product.price']);
+        }
+
+        return $this->render('order/cart.html.twig', ['orderItems'=>$orderItems, 'sumItem'=>$sumItem]);
     }
 
 }

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Корзина - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <table border="1", style="font-size: medium ">
+        <tr>
+            <th>Товар</th>
+            <th>Цена</th>
+            <th>Количество</th>
+            <th>Стоимость</th>
+        </tr>
+    {% for orderItem in orderItems %}
+        <tr>
+            <td>{{ orderItem.product.name }}</td>
+            <td>{{ orderItem.product.price }}</td>
+            <td>{{ orderItem.count }}</td>
+            <td>{{ sumItem }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+        <br>
+
+
+
+{% endblock %}
+
+
+
+
+
