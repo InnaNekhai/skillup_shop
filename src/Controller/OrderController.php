@@ -27,13 +27,7 @@ class OrderController extends Controller
         $repo = $this->getDoctrine()->getRepository(OrderItem::class);
         $orderItems = $repo->findBy(['order'=>$order_id]);
 
-        $sumItem=0;
-
-        foreach ($orderItems as $key=>$value){
-            $sumItem += ($orderItems['count']*$orderItems['product.price']);
-        }
-
-        return $this->render('order/cart.html.twig', ['orderItems'=>$orderItems, 'sumItem'=>$sumItem]);
+        return $this->render('order/cart.html.twig', ['orderItems'=>$orderItems]);
     }
 
 }

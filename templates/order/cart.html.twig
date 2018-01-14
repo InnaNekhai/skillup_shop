@@ -6,21 +6,25 @@
 
 {% block body %}
 
-    <table border="1", style="font-size: medium ">
+    <table border="1",  style="font-size: medium">
         <tr>
             <th>Товар</th>
             <th>Цена</th>
             <th>Количество</th>
             <th>Стоимость</th>
         </tr>
-    {% for orderItem in orderItems %}
+            {% for orderItem in orderItems %}
+                <tr>
+                    <td>{{ orderItem.product.name }}</td>
+                    <td>{{ orderItem.product.price }}</td>
+                    <td>{{ orderItem.count }}</td>
+                    <td>{{ orderItem.amount }}</td>
+                </tr>
+            {% endfor %}
         <tr>
-            <td>{{ orderItem.product.name }}</td>
-            <td>{{ orderItem.product.price }}</td>
-            <td>{{ orderItem.count }}</td>
-            <td>{{ sumItem }}</td>
+            <td colspan="3">Всего</td>
+            <td>3682928</td>
         </tr>
-    {% endfor %}
     </table>
         <br>
 
