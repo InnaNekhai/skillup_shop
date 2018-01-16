@@ -58,12 +58,20 @@ class OrderItem
     private $amount;
 
     /**
+     * @var float
+     *
+     * @ORM\Column(type="decimal", precision=20, scale=2)
+     */
+    private $sumItem;
+
+    /**
      * OrderItem constructor.
      */
     public function __construct()
     {
         $this->count = 0;
         $this->amount = 0;
+        $this->sumItem = 0;
     }
 
     /**
@@ -153,6 +161,24 @@ class OrderItem
     public function setAmount(float $amount): OrderItem
     {
         $this->amount = $amount;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getSumItem(): float
+    {
+        return $this->sumItem;
+    }
+
+    /**
+     * @param float $sumItem
+     * @return OrderItem
+     */
+    public function setSumItem(float $sumItem): OrderItem
+    {
+        $this->sumItem = $sumItem;
         return $this;
     }
 

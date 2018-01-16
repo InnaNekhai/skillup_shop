@@ -27,7 +27,11 @@ class OrderController extends Controller
         $repo = $this->getDoctrine()->getRepository(OrderItem::class);
         $orderItems = $repo->findBy(['order'=>$order_id]);
 
-        return $this->render('order/cart.html.twig', ['orderItems'=>$orderItems]);
+        $repo = $this->getDoctrine()->getRepository(Order::class);
+        $order = $repo->find($order_id);
+
+
+        return $this->render('order/cart.html.twig', ['orderItems'=>$orderItems, 'order'=>$order ]);
     }
 
 }
