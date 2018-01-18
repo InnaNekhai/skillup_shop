@@ -14,10 +14,9 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 
 /**
- * Class Feedback
- * @package App\Entity
+ *
  * @ORM\Entity
- * @@ORM\Table(name="feedbacks")
+ * @ORM\Table(name="orders")
  *
  */
 class Order
