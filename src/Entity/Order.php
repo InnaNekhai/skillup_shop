@@ -9,6 +9,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\DateTime;
 
@@ -102,7 +103,7 @@ class Order
     private $isPaid;
 
     /**
-     * @var OrderItem[]|ArrayCollection
+     * @var OrderItem[]|Collection
      *
      * @ORM\OneToMany(targetEntity="App\Entity\OrderItem", mappedBy="order")
      */
@@ -304,9 +305,9 @@ class Order
     }
 
     /**
-     * @return Order[]|ArrayCollection
+     * @return OrderItem[]|Collection
      */
-    public function getItems(): ArrayCollection
+    public function getItems(): Collection
     {
         return $this->items;
     }

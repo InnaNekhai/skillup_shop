@@ -11,8 +11,12 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Entity\OrderItem;
+use App\Entity\Product;
+use App\Service\Orders;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+
 
 class OrderController extends Controller
 {
@@ -32,6 +36,20 @@ class OrderController extends Controller
 
 
         return $this->render('order/cart.html.twig', ['orderItems'=>$orderItems, 'order'=>$order ]);
+    }
+
+    /**
+     * @param Product $product
+     * @param $count
+     *
+     * @Route("order/add-product/{id}/{count}", name="order_add_product",
+     *           requirements={"id": "\d+", "count": "\d+(\.\d+)?"})
+     */
+    public function addProduct(Product $product, float $count, Orders $orders, Request $request)
+    {
+        $orders->addProduct($product, $count);
+
+        return $this->redirect($request->headers->get('referer'));
     }
 
 }

@@ -48,6 +48,7 @@ class Orders
         if (!$order){
             $order = new Order();
             $this->em->persist($order);
+            $this->em->flush();
             $this->session->set('current_order_id', $order->getId());
         }
 
@@ -65,6 +66,15 @@ class Orders
                 break;
             }
         }
+
+        if (!$existingItem){
+            $existingItem = new OrderItem();
+            $existingItem->setProduct($product);
+            $this->em->persist($existingItem);
+        }
+
+        $existingItem->addCount($count);
+        $this->em->flush();
 
     }
 

@@ -157,5 +157,14 @@ class OrderItem
         return $this;
     }
 
+    public function addCount(float $count):OrderItem
+    {
+        $this->count += $count;
+        $this->setAmount($this->count * $this->product->getPrice());
+
+        return $this;
+    }
+
+
 
 }
