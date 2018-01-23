@@ -63,14 +63,21 @@ class Order
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=250)
+     * @ORM\Column(type="string", length=250, options={"default": ""})
+     */
+    private $customerName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=250, options={"default": ""})
      */
     private $phone;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=250)
+     * @ORM\Column(type="string", length=250, options={"default": ""})
      */
     private $email;
 
@@ -117,6 +124,7 @@ class Order
         $this->createdAt = new \DateTime();
         $this->count = 0;
         $this->amount = 0;
+        $this->customerName = '';
         $this->phone = '';
         $this->email='';
         $this->status = self::STATUS_DRAFT;
@@ -213,6 +221,26 @@ class Order
         $this->amount = $amount;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getCustomerName(): string
+    {
+        return $this->customerName;
+    }
+
+    /**
+     * @param string $customerName
+     * @return Order
+     */
+    public function setCustomerName(string $customerName): Order
+    {
+        $this->customerName = $customerName;
+        return $this;
+    }
+
+
 
     /**
      * @return string

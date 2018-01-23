@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
+ * @Vich\Uploadable
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
  */
 class Product
@@ -61,21 +62,21 @@ class Product
     private $imageFile;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, options={"default": ""})
      *
      * @var string
      */
     private $imageName;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      *
      * @var integer
      */
     private $imageSize;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      *
      * @var \DateTime
      */
@@ -163,30 +164,29 @@ class Product
 
     /**
      * @param Category $category
-     * @return Product
      */
     public function setCategory(Category $category): Product
     {
         $this->category = $category;
+
         return $this;
     }
 
     /**
-     * @return string
+     * @return bool
      */
-    public function getisTop(): string
+    public function getisTop(): bool
     {
         return $this->isTop;
     }
 
     /**
-     * @param string $isTop
-     * @return Product
+     * @param bool $isTop
      */
-    public function setIsTop(string $isTop): Product
+    public function setIsTop(bool $isTop): void
     {
         $this->isTop = $isTop;
-        return $this;
+
     }
 
     /**
@@ -233,6 +233,13 @@ class Product
     {
         return $this->imageSize;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+
 }
 
 
