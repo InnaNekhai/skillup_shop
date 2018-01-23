@@ -70,6 +70,7 @@ class Orders
         if (!$existingItem){
             $existingItem = new OrderItem();
             $existingItem->setProduct($product);
+            $order->addItem($existingItem);
             $this->em->persist($existingItem);
         }
 

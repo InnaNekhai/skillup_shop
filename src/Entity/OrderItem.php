@@ -161,6 +161,7 @@ class OrderItem
     {
         $this->count += $count;
         $this->setAmount($this->count * $this->product->getPrice());
+        $this->order->recalculateItems();
 
         return $this;
     }

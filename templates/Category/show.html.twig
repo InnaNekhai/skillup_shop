@@ -6,23 +6,15 @@
 
 {% block body %}
 
-    Выбранная категория: {{ category.name }} <br>
-    Страница: {{ page }}<br><br>
-
-    Продукты: <br><br>
-
     {% for message in app.flashes('notice') %}
-        <b>{{ message }}</b> <br><br>
+        <p>{{ message }}</p>
     {% endfor %}
-    {% for product in category.products %}
-        <a href="{{ path("product_show", {'id': product.id}) }}" >
-            {{ product.name }} - {{ product.price|number_format(2, ',', ' ') }}
-        </a>
-        <br>
-    <button>
-        <a href="{{ path("category_message") }}" style = "color:green; font-weight:bold" > Купить  </a>
-    </button>
 
-        <hr>
-    {% endfor %}
+    Выбранная категория: {{ category.name }} <br>
+    Страница: {{ page }}<br>
+
+    <div class="row">
+        {% include 'partials/products.html.twig' with {'products': category.products} %}
+    </div>
+
 {% endblock %}

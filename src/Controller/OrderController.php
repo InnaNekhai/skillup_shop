@@ -21,22 +21,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class OrderController extends Controller
 {
+
     /**
-     * @Route("cart/{order_id}", name="cart", requirements={"order_id": "\d+"})
-     *
-     * @param $order_id
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("cart", name="order_cart")
      */
-    public function showCart($order_id)
+    public function showCart(Orders $orders)
     {
-        $repo = $this->getDoctrine()->getRepository(OrderItem::class);
-        $orderItems = $repo->findBy(['order'=>$order_id]);
-
-        $repo = $this->getDoctrine()->getRepository(Order::class);
-        $order = $repo->find($order_id);
-
-
-        return $this->render('order/cart.html.twig', ['orderItems'=>$orderItems, 'order'=>$order ]);
+        return $this->render('order/cart.html.twig', ['order' => $orders->getCurrentOrder()]);
     }
 
     /**
