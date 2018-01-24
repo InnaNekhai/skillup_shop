@@ -58,7 +58,7 @@ class OrderController extends Controller
 
         }
 
-        return $this->render('order/completeForm.twig.html', [
+        return $this->render('order/completeForm.html.twig', [
             'order' => $order,
             'form' => $form->createView(),
         ]);

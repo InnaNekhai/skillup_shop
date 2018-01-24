@@ -17,17 +17,19 @@ class OrderType extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => Order::class,
-        ));
+            'validation_groups' => ['completeOrder'],
+        ]);
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+            ->add('customerName')
+            ->add('phone')
             ->add('email')
-            ->add('message')
+            ->add('address')
         ;
     }
 

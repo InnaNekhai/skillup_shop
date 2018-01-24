@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -64,6 +65,7 @@ class Order
      * @var string
      *
      * @ORM\Column(type="string", length=250, options={"default": ""})
+     * @Assert\NotBlank(groups={"completeOrder"})
      */
     private $customerName;
 
@@ -71,6 +73,7 @@ class Order
      * @var string
      *
      * @ORM\Column(type="string", length=250, options={"default": ""})
+     * @Assert\NotBlank(groups={"completeOrder"})
      */
     private $phone;
 
@@ -78,6 +81,7 @@ class Order
      * @var string
      *
      * @ORM\Column(type="string", length=250, options={"default": ""})
+     * @Assert\NotBlank(groups={"completeOrder"})
      */
     private $email;
 
@@ -85,6 +89,7 @@ class Order
      * @var string|null
      *
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\NotBlank(groups={"completeOrder"})
      */
     private $address;
 
