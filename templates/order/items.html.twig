@@ -4,6 +4,7 @@
         <th>Цена</th>
         <th>Количество</th>
         <th>Стоимость</th>
+        <th></th>
     </tr>
 
     {# @var item \App\Entity\OrderItem #}
@@ -12,15 +13,12 @@
             <td>{{ item.product.name }}</td>
             <td>{{ item.product.price }}</td>
             <td>
-                <a>
-                    <span class="glyphicons glyphicons-minus"></span>
-                </a>
-
                 {{ item.count }}
-
-                    <a>+</a>
             </td>
-            <td>{{ item.amount }}</td>
+            <td>{{ item.amount }}
+            <td>
+                <a href="{{ path('order_remove_item', {'id': item.id }) }}" >x</a>
+            </td>
         </tr>
     {% endfor %}
 
@@ -28,6 +26,7 @@
         <td colspan="2">Всего</td>
         <td>{{ order.count }}</td>
         <td>{{ order.amount }}</td>
+        <td></td>
 
     </tr>
 

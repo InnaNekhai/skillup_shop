@@ -45,7 +45,7 @@ class Orders
 
         $order = $id ? $this->em->find(Order::class, $id) : null;
 
-        if (!$order){
+        if (!$order || $order->getStatus() != Order::STATUS_DRAFT){
             $order = new Order();
             $this->em->persist($order);
             $this->em->flush();
@@ -76,6 +76,29 @@ class Orders
 
         $existingItem->addCount($count);
         $this->em->flush();
+
+    }
+
+    public function removeItem(OrderItem $item)
+    {
+        $order = $this->getCurrentOrder();
+
+        foreach ($order->getItems() as $orderItem){
+            if ($orderItem == $item){
+                $order->removeItem($orderItem);
+                $this->em->persist($order);
+                $this->em->persist($item);
+                $this->em->flush();
+            }
+        }
+    }
+
+
+    public function makeOrder(Order $order)
+    {
+        $order->setStatus(Order::STATUS_ORDERED);
+        $this->em->flush();
+
 
     }
 

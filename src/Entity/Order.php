@@ -74,6 +74,8 @@ class Order
      *
      * @ORM\Column(type="string", length=250, options={"default": ""})
      * @Assert\NotBlank(groups={"completeOrder"})
+     * @Assert\Regex("/^\+?[ -\(\)\d]+$/", groups={"completeOrder"})
+     * @Assert\Length(min=5, minMessage="Введите номер с кодом города или оператора", groups={"completeOrder"})
      */
     private $phone;
 
